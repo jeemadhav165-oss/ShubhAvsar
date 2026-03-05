@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shubh Avsar — Luxury Event Planning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E6C0;
+    --cream: #FAF7F0;
+    --dark: #0D0B08;
+    --dark2: #1A1710;
+    --charcoal: #2C2A25;
+    --muted: #8A8478;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    position: fixed; top: 0; left: 0;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed; top: 0; left: 0;
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    opacity: 0.6;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 500;
+    padding: 28px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(13,11,8,0.95), transparent);
+    animation: fadeDown 1.2s ease both;
+  }
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; color: var(--cream); }
+
+  .nav-links { display: flex; gap: 44px; list-style: none; }
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 10px 24px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 60px 80px;
+  }
+
+  /* Animated golden orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.18;
+    animation: drift linear infinite;
+  }
+  .orb-1 { width: 500px; height: 500px; background: var(--gold); top: -100px; right: -80px; animation-duration: 18s; }
+  .orb-2 { width: 350px; height: 350px; background: #8B6914; bottom: -60px; left: -40px; animation-duration: 22s; animation-direction: reverse; }
+  .orb-3 { width: 200px; height: 200px; background: var(--gold-light); top: 40%; left: 50%; animation-duration: 14s; opacity: 0.1; }
+
+  @keyframes drift {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    33%  { transform: translate(40px, -30px) rotate(120deg); }
+    66%  { transform: translate(-20px, 40px) rotate(240deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+  }
+
+  /* Diagonal line decorations */
+  .hero-line {
+    position: absolute;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.3;
+  }
+  .hero-line-1 { height: 200px; top: 15%; left: 12%; animation: linePulse 4s ease-in-out infinite; }
+  .hero-line-2 { height: 150px; bottom: 18%; right: 14%; animation: linePulse 4s ease-in-out 2s infinite; }
+  @keyframes linePulse { 0%,100% { opacity:0.15; } 50% { opacity:0.5; } }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    animation: riseUp 1.2s 0.3s ease both;
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 9vw, 8.5rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    margin-bottom: 40px;
+    animation: riseUp 1.4s 0.5s ease both;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+
+  @keyframes riseUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+
+  .hero-sub {
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    line-height: 2;
+    max-width: 480px;
+    margin: 0 auto 56px;
+    animation: riseUp 1.4s 0.7s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 20px; justify-content: center; align-items: center;
+    animation: riseUp 1.4s 0.9s ease both;
+  }
+
+  .btn-primary {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 16px 40px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--gold-light);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-primary:hover { transform: translateY(-2px); }
+
+  .btn-ghost {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: transparent;
+    padding: 15px 40px;
+    border: 1px solid var(--gold);
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+  }
+  .btn-ghost:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    animation: riseUp 1.4s 1.2s ease both;
+  }
+  .scroll-hint span {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .scroll-arrow {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100% { opacity:0.3; transform:scaleY(1); } 50% { opacity:1; transform:scaleY(1.15); } }
+
+  /* ── MARQUEE ── */
+  .marquee-section {
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 22px 0;
+    overflow: hidden;
+    background: var(--dark2);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 28s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    display: flex; align-items: center; gap: 32px;
+    padding: 0 40px;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .marquee-diamond {
+    width: 5px; height: 5px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    opacity: 0.7;
+  }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── SECTION BASE ── */
+  section { padding: 120px 60px; }
+
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── SERVICES ── */
+  .services { background: var(--dark); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 70px;
+  }
+
+  .service-card {
+    background: var(--dark2);
+    padding: 52px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+    cursor: none;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-card:hover { transform: translateY(-4px); }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.5s ease;
+  }
+  .service-card:hover::after { width: 100%; }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(201,168,76,0.12);
+    line-height: 1;
+    margin-bottom: 28px;
+  }
+  .service-icon {
+    font-size: 1.6rem;
+    margin-bottom: 22px;
+    display: block;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--cream);
+  }
+  .service-desc {
+    font-size: 0.8rem;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--dark2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-img-gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, var(--charcoal) 100%);
+  }
+  .about-img-pattern {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(201,168,76,0.03) 40px,
+      rgba(201,168,76,0.03) 41px
+    );
+  }
+  .about-img-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+  }
+  .about-img-text .big-initial {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12rem;
+    font-weight: 300;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    animation: floatSlow 8s ease-in-out infinite;
+  }
+  @keyframes floatSlow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+  .about-badge {
+    position: absolute;
+    bottom: -24px; right: -24px;
+    width: 140px; height: 140px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    animation: spin 30s linear infinite;
+  }
+  .about-badge-inner {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1;
+  }
+  .about-badge-sub {
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+    opacity: 0.7;
+  }
+
+  .about-text p {
+    font-size: 0.9rem;
+    line-height: 2.1;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .about-text p strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .stats-row {
+    display: flex; gap: 48px;
+    margin-top: 52px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* ── GALLERY ── */
+  .gallery { background: var(--dark); overflow: hidden; }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 3px;
+    margin-top: 70px;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: var(--charcoal);
+  }
+  .gallery-item:first-child { grid-row: span 2; }
+
+  .gallery-inner {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:first-child .gallery-inner { min-height: 540px; }
+  .gallery-item:hover .gallery-inner { transform: scale(1.04); }
+
+  .gallery-fill {
+    position: absolute; inset: 0;
+    transition: opacity 0.4s;
+  }
+  .gf-1 { background: linear-gradient(135deg, #1a1208 0%, #3d2b0a 100%); }
+  .gf-2 { background: linear-gradient(135deg, #0d0e14 0%, #1e2035 100%); }
+  .gf-3 { background: linear-gradient(135deg, #0f1a0a 0%, #1e3510 100%); }
+  .gf-4 { background: linear-gradient(135deg, #1a0d12 0%, #35101e 100%); }
+  .gf-5 { background: linear-gradient(135deg, #141008 0%, #2e2510 100%); }
+
+  .gallery-label {
+    position: absolute;
+    bottom: 24px; left: 24px;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .gallery-item:hover .gallery-label { opacity: 1; transform: translateY(0); }
+  .gallery-label-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+  }
+  .gallery-label-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .gallery-icon {
+    font-size: 3.5rem;
+    opacity: 0.25;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .gallery-item:first-child .gallery-icon { font-size: 6rem; }
+
+  /* ── PROCESS ── */
+  .process { background: var(--dark2); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 80px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 14%;
+    width: 72%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0.25;
+  }
+
+  .process-step { padding: 0 32px; text-align: center; position: relative; }
+
+  .step-dot {
+    width: 56px; height: 56px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    background: var(--dark2);
+    position: relative;
+    z-index: 1;
+    transition: background 0.4s, transform 0.3s;
+  }
+  .process-step:hover .step-dot {
+    background: var(--gold);
+    color: var(--dark);
+    transform: scale(1.1);
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+    color: var(--cream);
+  }
+  .step-desc {
+    font-size: 0.78rem;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--dark); }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 70px;
+  }
+
+  .testimonial-card {
+    background: var(--dark2);
+    padding: 52px 44px;
+    position: relative;
+    transition: transform 0.3s;
+  }
+  .testimonial-card:hover { transform: translateY(-4px); }
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 28px; left: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem;
+    color: var(--gold);
+    opacity: 0.12;
+    line-height: 1;
+  }
+
+  .t-stars { color: var(--gold); font-size: 0.7rem; letter-spacing: 0.1em; margin-bottom: 24px; }
+  .t-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--cream);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .t-author {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .t-event {
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--dark2);
+    text-align: center;
+    padding: 160px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.06), transparent);
+  }
+  .cta-section .section-label { justify-content: center; }
+  .cta-section .section-label::before { display: none; }
+  .cta-section .section-label::after { content: ''; width: 28px; height: 1px; background: var(--gold); }
+
+  .cta-section .section-title { max-width: 700px; margin: 0 auto 28px; }
+
+  .cta-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 56px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 60px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .footer-left {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--gold);
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-right {
+    text-align: right;
+    display: flex;
+    gap: 28px;
+    justify-content: flex-end;
+  }
+  .footer-social {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-social:hover { color: var(--gold); }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Floating diamonds */
+  .diamond-deco {
+    position: absolute;
+    width: 8px; height: 8px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    opacity: 0.2;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle { 0%,100% { opacity:0.1; } 50% { opacity:0.5; } }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 28px; }
+    .nav-links, .nav-cta { display: none; }
+    section { padding: 80px 28px; }
+    .hero { padding: 100px 28px 80px; }
+    .services-grid, .testimonial-grid { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; gap: 50px; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-row: span 1; }
+    footer { grid-template-columns: 1fr; text-align: center; }
+    .footer-right { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Shubh <span>Avsar</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Portfolio</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Plan Your Event</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-line hero-line-1"></div>
+  <div class="hero-line hero-line-2"></div>
+
+  <div class="diamond-deco" style="top:22%;left:8%;animation-delay:0s"></div>
+  <div class="diamond-deco" style="top:60%;right:9%;animation-delay:1.5s"></div>
+  <div class="diamond-deco" style="bottom:25%;left:20%;animation-delay:3s"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Luxury Event Planning</div>
+    <h1 class="hero-title">
+      Where Moments<br>Become
+      <em>Timeless</em>
+    </h1>
+    <p class="hero-sub">Curating extraordinary celebrations with meticulous artistry — weddings, galas, and milestones crafted for the discerning few.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary"><span>Begin Your Journey</span></a>
+      <a href="#gallery" class="btn-ghost">View Portfolio</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item"><span>Luxury Weddings</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Royal Galas</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Corporate Soirées</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Private Celebrations</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Destination Events</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Cultural Ceremonies</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Anniversary Affairs</span><div class="marquee-diamond"></div></div>
+    <!-- duplicate for infinite loop -->
+    <div class="marquee-item"><span>Luxury Weddings</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Royal Galas</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Corporate Soirées</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Private Celebrations</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Destination Events</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Cultural Ceremonies</span><div class="marquee-diamond"></div></div>
+    <div class="marquee-item"><span>Anniversary Affairs</span><div class="marquee-diamond"></div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label reveal">Our Expertise</div>
+  <h2 class="section-title reveal">Every Detail,<br><em>Perfectly Orchestrated</em></h2>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <span class="service-icon">💍</span>
+      <div class="service-name">Wedding Planning</div>
+      <p class="service-desc">From intimate ceremonies to grand celebrations, we design and execute every facet of your perfect wedding day with flawless precision and heartfelt devotion.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.1s">
+      <div class="service-num">02</div>
+      <span class="service-icon">✨</span>
+      <div class="service-name">Luxury Galas</div>
+      <p class="service-desc">Breathtaking evenings of elegance — fundraising galas, black-tie affairs, and award ceremonies that leave guests in awe and memories that endure forever.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.2s">
+      <div class="service-num">03</div>
+      <span class="service-icon">🏛️</span>
+      <div class="service-name">Corporate Events</div>
+      <p class="service-desc">Product launches, executive retreats, and conferences transformed into sophisticated experiences that reinforce your brand's prestige and vision.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.3s">
+      <div class="service-num">04</div>
+      <span class="service-icon">🌸</span>
+      <div class="service-name">Cultural Ceremonies</div>
+      <p class="service-desc">Honouring tradition with contemporary elegance — mehndi, sangeet, engagement, and milestone ceremonies woven with rich cultural tapestry.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.4s">
+      <div class="service-num">05</div>
+      <span class="service-icon">🌍</span>
+      <div class="service-name">Destination Events</div>
+      <p class="service-desc">The world is your venue. We orchestrate extraordinary events in the most coveted destinations — from Venetian palazzos to Rajasthani forts.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.5s">
+      <div class="service-num">06</div>
+      <span class="service-icon">🎂</span>
+      <div class="service-name">Private Celebrations</div>
+      <p class="service-desc">Milestone birthdays, anniversaries, and intimate gatherings curated as bespoke experiences — every detail a reflection of your unique story.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about" style="padding:120px 60px;">
+  <div class="about-visual reveal">
+    <div class="about-img-frame">
+      <div class="about-img-gradient"></div>
+      <div class="about-img-pattern"></div>
+      <div class="about-img-text">
+        <div class="big-initial">SA</div>
+      </div>
+    </div>
+    <div class="about-badge">
+      <div class="about-badge-inner">12+</div>
+      <div class="about-badge-sub">Years of<br>Excellence</div>
+    </div>
+  </div>
+
+  <div class="about-text reveal">
+    <div class="section-label">Our Story</div>
+    <h2 class="section-title">The Art of<br><em>Extraordinary</em></h2>
+    <p>At Shubh Avsar, we believe every celebration is a once-in-a-lifetime canvas. Founded on a passion for <strong>refined elegance and meticulous craftsmanship</strong>, we have spent over a decade transforming visions into living, breathing experiences.</p>
+    <p>Our team of dedicated artisans — designers, stylists, and logistics maestros — work in seamless harmony so that you can be fully present in your most precious moments, while we <strong>orchestrate every detail behind the scenes.</strong></p>
+    <p>We don't plan events. We <strong>compose memories.</strong></p>
+
+    <div class="stats-row">
+      <div>
+        <span class="stat-num">500+</span>
+        <span class="stat-label">Events Crafted</span>
+      </div>
+      <div>
+        <span class="stat-num">98%</span>
+        <span class="stat-label">Client Delight</span>
+      </div>
+      <div>
+        <span class="stat-num">40+</span>
+        <span class="stat-label">Cities Worldwide</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-label reveal">Portfolio</div>
+  <h2 class="section-title reveal">Moments We've<br><em>Made Eternal</em></h2>
+
+  <div class="gallery-grid">
+    <div class="gallery-item reveal">
+      <div class="gallery-inner">
+        <div class="gallery-fill gf-1"></div>
+        <div class="gallery-icon">💒</div>
+        <div class="gallery-label">
+          <div class="gallery-label-text">The Sharma Wedding</div>
+          <div class="gallery-label-sub">Udaipur, 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:0.1s">
+      <div class="gallery-inner">
+        <div class="gallery-fill gf-2"></div>
+        <div class="gallery-icon">🌟</div>
+        <div class="gallery-label">
+          <div class="gallery-label-text">Crystal Gala</div>
+          <div class="gallery-label-sub">Mumbai, 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:0.2s">
+      <div class="gallery-inner">
+        <div class="gallery-fill gf-3"></div>
+        <div class="gallery-icon">🌿</div>
+        <div class="gallery-label">
+          <div class="gallery-label-text">Garden Soirée</div>
+          <div class="gallery-label-sub">Goa, 2023</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:0.3s">
+      <div class="gallery-inner">
+        <div class="gallery-fill gf-4"></div>
+        <div class="gallery-icon">🌹</div>
+        <div class="gallery-label">
+          <div class="gallery-label-text">Patel Anniversary</div>
+          <div class="gallery-label-sub">Dubai, 2023</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item reveal" style="transition-delay:0.4s">
+      <div class="gallery-inner">
+        <div class="gallery-fill gf-5"></div>
+        <div class="gallery-icon">🏆</div>
+        <div class="gallery-label">
+          <div class="gallery-label-text">Awards Ceremony</div>
+          <div class="gallery-label-sub">Delhi, 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-label reveal">How We Work</div>
+  <h2 class="section-title reveal" style="text-align:center; max-width:600px; margin:0 auto 0;">The Path to Your<br><em>Perfect Celebration</em></h2>
+
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-dot">01</div>
+      <div class="step-title">Discovery</div>
+      <p class="step-desc">We begin with a private consultation to understand your vision, values, and the story you wish to tell through your event.</p>
+    </div>
+    <div class="process-step reveal" style="transition-delay:0.15s">
+      <div class="step-dot">02</div>
+      <div class="step-title">Conception</div>
+      <p class="step-desc">Our creative team crafts a bespoke concept board — themes, palettes, floral stories, and spatial design tailored uniquely to you.</p>
+    </div>
+    <div class="process-step reveal" style="transition-delay:0.3s">
+      <div class="step-dot">03</div>
+      <div class="step-title">Curation</div>
+      <p class="step-desc">We handpick the finest vendors, venues, and artisans — every element chosen with discernment and uncompromising quality.</p>
+    </div>
+    <div class="process-step reveal" style="transition-delay:0.45s">
+      <div class="step-dot">04</div>
+      <div class="step-title">Execution</div>
+      <p class="step-desc">On the day, our team operates in seamless precision — so every moment unfolds flawlessly, and you simply savour the magic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-label reveal">Client Stories</div>
+  <h2 class="section-title reveal">Words From<br><em>Those We've Cherished</em></h2>
+
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">Shubh Avsar turned our dream wedding into something beyond imagination. Every single detail was attended to with such grace and mastery — we were in tears of joy.</p>
+      <div class="t-author">Priya & Rohan Mehta</div>
+      <div class="t-event">Grand Wedding — Jaipur</div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.1s">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">Our annual gala was transformed into an unforgettable evening. The attention to aesthetic detail and the flawless execution left our guests speechless.</p>
+      <div class="t-author">Anita Desai</div>
+      <div class="t-event">Corporate Gala — Mumbai</div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.2s">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">From our first call to the final dance, the Shubh Avsar team were extraordinary. They understood our vision perfectly and elevated it beyond what we thought possible.</p>
+      <div class="t-author">The Kapoor Family</div>
+      <div class="t-event">Silver Jubilee — Dubai</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="diamond-deco" style="top:20%;left:10%;animation-delay:0s"></div>
+  <div class="diamond-deco" style="bottom:20%;right:10%;animation-delay:2s"></div>
+
+  <div class="section-label reveal">Get In Touch</div>
+  <h2 class="section-title reveal">Your Story Deserves<br><em>A Grand Stage</em></h2>
+  <p class="cta-sub reveal">Let us begin crafting your most extraordinary moment.</p>
+  <div class="reveal">
+    <a href="mailto:hello@shubhavsar.com" class="btn-primary" style="display:inline-block; margin-right:20px;"><span>Start Planning</span></a>
+    <a href="tel:+919999999999" class="btn-ghost" style="display:inline-block;">+91 99999 99999</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    © 2025 Shubh Avsar. All rights reserved.<br>
+    <span style="font-size:0.6rem;opacity:0.5;">Crafting extraordinary since 2013</span>
+  </div>
+  <div class="footer-logo">Shubh Avsar</div>
+  <div class="footer-right">
+    <a href="#" class="footer-social">Instagram</a>
+    <a href="#" class="footer-social">Pinterest</a>
+    <a href="#" class="footer-social">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+  });
+
+  function animateRing() {
+    rx += (mx - rx - 18) * 0.12;
+    ry += (my - ry - 18) * 0.12;
+    ring.style.transform = `translate(${rx}px, ${ry}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform += ' scale(2.5)';
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+      ring.style.opacity = '0.3';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.opacity = '0.6';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 80) {
+      nav.style.background = 'rgba(13,11,8,0.97)';
+      nav.style.backdropFilter = 'blur(20px)';
+      nav.style.borderBottom = '1px solid rgba(201,168,76,0.1)';
+    } else {
+      nav.style.background = 'linear-gradient(to bottom, rgba(13,11,8,0.95), transparent)';
+      nav.style.backdropFilter = 'none';
+      nav.style.borderBottom = 'none';
+    }
+  });
+
+  // Animate stats on scroll
+  const statNums = document.querySelectorAll('.stat-num');
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = el.textContent;
+        const isPercent = target.includes('%');
+        const isPlus = target.includes('+');
+        const num = parseInt(target);
+        let current = 0;
+        const duration = 1800;
+        const step = duration / 60;
+        const increment = num / 60;
+        const timer = setInterval(() => {
+          current = Math.min(current + increment, num);
+          el.textContent = Math.floor(current) + (isPlus ? '+' : '') + (isPercent ? '%' : '');
+          if (current >= num) clearInterval(timer);
+        }, step);
+        statObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => statObserver.observe(el));
+</script>
+</body>
+</html>
