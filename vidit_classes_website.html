@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidit Classes — Building Strong Foundation for Young Minds</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1B3D;
+    --blue: #1E3A6E;
+    --sky: #3B82F6;
+    --sky-light: #60A5FA;
+    --amber: #F59E0B;
+    --amber-light: #FCD34D;
+    --orange: #F97316;
+    --white: #FFFFFF;
+    --cream: #FFF9ED;
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-300: #CBD5E1;
+    --gray-500: #64748B;
+    --gray-700: #334155;
+    --gray-900: #0F172A;
+    --success: #10B981;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--gray-900);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--navy);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--amber);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-icon::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border: 1.5px solid rgba(245,158,11,0.3);
+    border-radius: 8px;
+  }
+
+  .logo-text {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+
+  .logo-text span {
+    color: var(--sky);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray-700);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--sky); }
+
+  .nav-cta {
+    background: var(--sky) !important;
+    color: var(--white) !important;
+    padding: 0.65rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: all 0.3s !important;
+    box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+  }
+
+  .nav-cta:hover {
+    background: var(--blue) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(59,130,246,0.4);
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--navy);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    background: var(--cream);
+    overflow: hidden;
+  }
+
+  .hero-bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .shape-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(59,130,246,0.12), transparent 70%);
+    top: -100px; right: -100px;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .shape-2 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 70%);
+    bottom: 50px; left: -50px;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+
+  .shape-3 {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(16,185,129,0.1), transparent 70%);
+    top: 40%; left: 50%;
+    animation: float 6s ease-in-out infinite 2s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  /* Dotted grid pattern */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(15,27,61,0.06) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.15);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--sky);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-badge::before {
+    content: '🎯';
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero h1 .highlight {
+    position: relative;
+    color: var(--sky);
+    display: inline-block;
+  }
+
+  .hero h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: -4px;
+    right: -4px;
+    height: 12px;
+    background: rgba(245,158,11,0.3);
+    border-radius: 2px;
+    z-index: -1;
+    transform: skewX(-3deg);
+  }
+
+  .handwritten {
+    font-family: 'Caveat', cursive;
+    color: var(--orange);
+    font-size: 1.3em;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--gray-500);
+    line-height: 1.75;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: var(--sky);
+    color: var(--white);
+    box-shadow: 0 6px 25px rgba(59,130,246,0.35);
+  }
+
+  .btn-primary:hover {
+    background: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59,130,246,0.45);
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--navy);
+    border: 2px solid var(--gray-300);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--sky);
+    color: var(--sky);
+    transform: translateY(-2px);
+  }
+
+  /* Hero visual card */
+  .hero-visual {
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 25px 60px rgba(15,27,61,0.1), 0 4px 15px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--sky), var(--amber), var(--orange));
+  }
+
+  .card-subject {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .card-subject:last-child { border-bottom: none; }
+
+  .subject-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .subject-icon.math { background: rgba(59,130,246,0.1); }
+  .subject-icon.science { background: rgba(16,185,129,0.1); }
+  .subject-icon.english { background: rgba(249,115,22,0.1); }
+  .subject-icon.social { background: rgba(168,85,247,0.1); }
+
+  .subject-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--navy);
+  }
+
+  .subject-detail {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+  }
+
+  .subject-badge {
+    margin-left: auto;
+    background: rgba(16,185,129,0.1);
+    color: var(--success);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    letter-spacing: 0.03em;
+  }
+
+  /* Floating elements around card */
+  .float-badge {
+    position: absolute;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    animation: floatBadge 4s ease-in-out infinite;
+    z-index: 3;
+  }
+
+  .float-badge.top-right {
+    top: -15px;
+    right: -20px;
+    color: var(--success);
+    animation-delay: 0s;
+  }
+
+  .float-badge.bottom-left {
+    bottom: 20px;
+    left: -30px;
+    color: var(--amber);
+    animation-delay: 2s;
+  }
+
+  @keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    background: var(--navy);
+    padding: 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(59,130,246,0.1), transparent, rgba(245,158,11,0.05));
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--amber);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 6rem 4rem; }
+
+  .section-center { text-align: center; }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--gray-500);
+    max-width: 550px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.7;
+  }
+
+  /* ─── WHY US ─── */
+  .why-us { background: var(--white); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: var(--gray-50);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    transition: all 0.4s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--sky);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .feature-card:hover {
+    background: var(--white);
+    border-color: rgba(59,130,246,0.15);
+    box-shadow: 0 15px 40px rgba(15,27,61,0.08);
+    transform: translateY(-4px);
+  }
+
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-card:nth-child(1) .feature-icon { background: rgba(59,130,246,0.1); }
+  .feature-card:nth-child(2) .feature-icon { background: rgba(245,158,11,0.1); }
+  .feature-card:nth-child(3) .feature-icon { background: rgba(16,185,129,0.1); }
+  .feature-card:nth-child(4) .feature-icon { background: rgba(168,85,247,0.1); }
+  .feature-card:nth-child(5) .feature-icon { background: rgba(249,115,22,0.1); }
+  .feature-card:nth-child(6) .feature-icon { background: rgba(236,72,153,0.1); }
+
+  .feature-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 0.7rem;
+  }
+
+  .feature-desc {
+    font-size: 0.9rem;
+    color: var(--gray-500);
+    line-height: 1.7;
+  }
+
+  /* ─── CLASSES / PROGRAMS ─── */
+  .programs {
+    background: var(--cream);
+    position: relative;
+  }
+
+  .programs::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(15,27,61,0.03) 1px, transparent 1px);
+    background-size: 25px 25px;
+    pointer-events: none;
+  }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .program-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .program-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+  }
+
+  .program-class {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--sky);
+    margin-bottom: 0.3rem;
+  }
+
+  .program-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .program-subjects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .program-tag {
+    background: var(--gray-100);
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--gray-700);
+  }
+
+  .program-features {
+    list-style: none;
+  }
+
+  .program-features li {
+    font-size: 0.88rem;
+    color: var(--gray-500);
+    padding: 0.4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .program-features li::before {
+    content: '✓';
+    color: var(--success);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  /* ─── RESULTS ─── */
+  .results {
+    background: var(--navy);
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .results::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.15), transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(245,158,11,0.1), transparent 60%);
+  }
+
+  .results .section-title { color: var(--white); }
+  .results .section-subtitle { color: rgba(255,255,255,0.6); }
+
+  .results-showcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .result-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    transition: all 0.4s ease;
+  }
+
+  .result-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+  }
+
+  .result-percent {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--amber);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-label {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--white); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: var(--gray-50);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .testimonial-card:hover {
+    border-color: rgba(59,130,246,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .testimonial-stars {
+    color: var(--amber);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sky), var(--blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .author-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--navy);
+  }
+
+  .author-role {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+
+  /* ─── CTA ─── */
+  .cta {
+    background: var(--cream);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box {
+    background: var(--white);
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 28px;
+    padding: 4rem 3rem;
+    box-shadow: 0 20px 50px rgba(15,27,61,0.08);
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--sky), var(--amber), var(--orange));
+    border-radius: 28px 28px 0 0;
+  }
+
+  .cta-handwritten {
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta .section-title {
+    margin-bottom: 1rem;
+  }
+
+  .cta .section-subtitle {
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-amber {
+    background: var(--amber);
+    color: var(--navy);
+    box-shadow: 0 6px 25px rgba(245,158,11,0.35);
+  }
+
+  .btn-amber:hover {
+    background: var(--orange);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--gray-900);
+    padding: 4rem;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-brand .logo-text {
+    color: var(--white);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  .footer-heading {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.88rem;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--amber); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .social-icons a {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .social-icons a:hover {
+    background: var(--sky);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    section { padding: 4rem 2rem; }
+    .hero { padding: 7rem 2rem 3rem; }
+    .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-visual { max-width: 450px; margin: 0 auto; }
+    .float-badge.bottom-left { left: 0; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .results-showcase { grid-template-columns: repeat(3, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: block; }
+    .features-grid, .programs-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-showcase { grid-template-columns: 1fr; max-width: 300px; }
+    .hero-buttons { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .cta-box { padding: 3rem 1.5rem; }
+    .stats-bar { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">V</div>
+    <span class="logo-text">Vidit <span>Classes</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Why Us</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Enroll Now →</a></li>
+  </ul>
+  <button class="menu-toggle" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">Coaching for Class 6th — 10th</div>
+      <h1>Building a <span class="highlight">Strong Foundation</span> for <span class="handwritten">Young Minds</span></h1>
+      <p>Personalized academic guidance that transforms curiosity into confidence. At Vidit Classes, every student gets the attention they deserve to truly excel.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Start Learning Today →</a>
+        <a href="#programs" class="btn btn-secondary">View Programs</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-badge top-right">📈 Results 2024 — Outstanding!</div>
+      <div class="float-badge bottom-left">⭐ 2,700+ followers</div>
+      <div class="hero-card">
+        <div class="card-subject">
+          <div class="subject-icon math">📐</div>
+          <div>
+            <div class="subject-name">Mathematics</div>
+            <div class="subject-detail">Algebra, Geometry, Arithmetic</div>
+          </div>
+          <span class="subject-badge">LIVE</span>
+        </div>
+        <div class="card-subject">
+          <div class="subject-icon science">🔬</div>
+          <div>
+            <div class="subject-name">Science</div>
+            <div class="subject-detail">Physics, Chemistry, Biology</div>
+          </div>
+          <span class="subject-badge">LIVE</span>
+        </div>
+        <div class="card-subject">
+          <div class="subject-icon english">📖</div>
+          <div>
+            <div class="subject-name">English</div>
+            <div class="subject-detail">Grammar, Literature, Writing</div>
+          </div>
+          <span class="subject-badge">LIVE</span>
+        </div>
+        <div class="card-subject">
+          <div class="subject-icon social">🌏</div>
+          <div>
+            <div class="subject-name">Social Studies</div>
+            <div class="subject-detail">History, Geography, Civics</div>
+          </div>
+          <span class="subject-badge">LIVE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-value">500+</div>
+      <div class="stat-label">Students Taught</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">95%</div>
+      <div class="stat-label">Pass Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">5+</div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">4.9★</div>
+      <div class="stat-label">Parent Rating</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why-us section-center" id="about">
+  <p class="section-label">Why Vidit Classes</p>
+  <h2 class="section-title">From Curiosity to Confidence</h2>
+  <p class="section-subtitle">We nurture every step of growth with personalized teaching methods and a caring environment</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">👨‍🏫</div>
+      <div class="feature-title">Personalized Attention</div>
+      <div class="feature-desc">Small batch sizes ensure every student gets individual guidance, doubt clearing, and regular feedback on their progress.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📝</div>
+      <div class="feature-title">PYQ Practice</div>
+      <div class="feature-desc">Regular practice with Previous Year Questions builds exam confidence and helps students master the pattern of board exams.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-title">Concept-First Learning</div>
+      <div class="feature-desc">We focus on building strong conceptual understanding rather than rote memorization, ensuring long-term academic success.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Regular Assessments</div>
+      <div class="feature-desc">Frequent tests and performance tracking help identify weak areas early and keep students on the path to excellence.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤝</div>
+      <div class="feature-title">Parent Connect</div>
+      <div class="feature-desc">Regular parent-teacher interactions and progress reports keep families informed and involved in their child's academic journey.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-title">TestWhiz Prof AI</div>
+      <div class="feature-desc">Leveraging AI-powered tools for personalized test preparation, smart revision schedules, and adaptive learning experiences.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs section-center" id="programs">
+  <p class="section-label">Our Programs</p>
+  <h2 class="section-title">Structured Learning Paths</h2>
+  <p class="section-subtitle">Comprehensive coaching designed for every stage of middle and high school</p>
+  <div class="programs-grid">
+    <div class="program-card">
+      <div class="program-class">Foundation Track</div>
+      <div class="program-title">Class 6th — 8th</div>
+      <div class="program-subjects">
+        <span class="program-tag">Maths</span>
+        <span class="program-tag">Science</span>
+        <span class="program-tag">English</span>
+        <span class="program-tag">SST</span>
+      </div>
+      <ul class="program-features">
+        <li>Build strong fundamentals early</li>
+        <li>Interactive & fun teaching methods</li>
+        <li>Weekly quizzes & worksheets</li>
+        <li>Focus on NCERT + beyond</li>
+      </ul>
+    </div>
+    <div class="program-card">
+      <div class="program-class">Board Prep Track</div>
+      <div class="program-title">Class 9th — 10th</div>
+      <div class="program-subjects">
+        <span class="program-tag">Maths</span>
+        <span class="program-tag">Science</span>
+        <span class="program-tag">English</span>
+        <span class="program-tag">SST</span>
+      </div>
+      <ul class="program-features">
+        <li>Complete board exam preparation</li>
+        <li>Previous Year Question practice</li>
+        <li>Sample papers & mock tests</li>
+        <li>Special doubt-clearing sessions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div style="position:relative; z-index:2;">
+    <p class="section-label" style="color: var(--amber);">Results 2024</p>
+    <h2 class="section-title">Our Students Shine</h2>
+    <p class="section-subtitle">Year after year, Vidit Classes students achieve exceptional results in board exams</p>
+    <div class="results-showcase">
+      <div class="result-card">
+        <div class="result-percent">95%+</div>
+        <div class="result-label">Students scored above 80% in board exams</div>
+      </div>
+      <div class="result-card">
+        <div class="result-percent">40+</div>
+        <div class="result-label">Students scored distinction (90%+)</div>
+      </div>
+      <div class="result-card">
+        <div class="result-percent">100%</div>
+        <div class="result-label">Pass rate maintained for consecutive years</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section-center" id="testimonials">
+  <p class="section-label">Loved by Parents & Students</p>
+  <h2 class="section-title">What Families Say</h2>
+  <p class="section-subtitle">Real stories from the Vidit Classes community</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"My son's confidence in Maths has completely transformed since joining Vidit Classes. The teachers genuinely care about each student's progress."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">RS</div>
+        <div>
+          <div class="author-name">Ritu Sharma</div>
+          <div class="author-role">Parent, Class 9th Student</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"The PYQ practice sessions were a game-changer for my board exams. I felt fully prepared and scored 94% — thank you Vidit Classes!"</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">AK</div>
+        <div>
+          <div class="author-name">Ananya Kaur</div>
+          <div class="author-role">Class 10th Topper, 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Small batches make a huge difference. My daughter gets her doubts cleared in every class instead of falling behind. Highly recommend!"</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">VP</div>
+        <div>
+          <div class="author-name">Vijay Patel</div>
+          <div class="author-role">Parent, Class 7th Student</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-box">
+    <div class="cta-handwritten">New admissions open!</div>
+    <h2 class="section-title">Give Your Child the Best Start</h2>
+    <p class="section-subtitle" style="margin-bottom: 2rem;">Limited seats available for the current academic session. Enroll now and watch your child thrive at Vidit Classes.</p>
+    <div class="cta-buttons">
+      <a href="https://www.instagram.com/viditclasses/" class="btn btn-primary" target="_blank">Message on Instagram</a>
+      <a href="#" class="btn btn-amber">Book a Free Demo Class</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo-text">Vidit <span style="color: var(--sky);">Classes</span></span>
+      <p>Building strong foundations for young minds. Personalized coaching for Class 6th to 10th with a focus on conceptual learning and exam excellence.</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/viditclasses/" target="_blank">📷</a>
+        <a href="#" target="_blank">▶️</a>
+        <a href="#" target="_blank">📘</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#about">Why Us</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Programs</div>
+      <ul class="footer-links">
+        <li><a href="#">Class 6th–8th</a></li>
+        <li><a href="#">Class 9th–10th</a></li>
+        <li><a href="#">Board Prep</a></li>
+        <li><a href="#">TestWhiz Prof AI</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <ul class="footer-links">
+        <li><a href="https://www.instagram.com/viditclasses/">@viditclasses</a></li>
+        <li><a href="#">Free Demo Class</a></li>
+        <li><a href="#">Location</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Vidit Classes. All Rights Reserved. Building Strong Foundations for Young Minds.
+  </div>
+</footer>
+
+</body>
+</html>
